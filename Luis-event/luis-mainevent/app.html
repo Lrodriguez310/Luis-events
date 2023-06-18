@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Luis Events</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/5db21ba9c6.js"></script>
+
+    <link href="css/site.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="luis-events-low-resolution-logo-color-on-transparent-background.png" />
+
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- ======= Nav Section ======= -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="luis-events-high-resolution-logo-white-on-transparent-background.png" alt="" width="60" height="50"
+                    class="d-inline-block align-text-top">
+                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link active" aria-current="page" href="app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="code.html">The Code</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://luis-enter-here-portfolio.netlify.app/">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</br>
+    <!-- ======= Main Section ======= -->
+    <main id="content" class="flex-shrink-0">
+        <div class="container-fluid px-4 py-5 mt-5">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary">Location</button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div id="eventDropDown" class="dropdown-menu">
+                            <!--Template for dropdown-->
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <tr>
+                            <th colspan="2" id="statsHeader">Stats For All Events</th>
+                        </tr>
+                        <tr>
+                            <td>Total Attendance</td>
+                            <td id="total">100</td>
+                        </tr>
+                        <tr>
+                            <td>Average Attendance</td>
+                            <td id="average">100</td>
+                        </tr>
+                        <tr>
+                            <td>Most Attended</td>
+                            <td id="most">100</td>
+                        </tr>
+                        <tr>
+                            <td>Least Attended</td>
+                            <td id="least">100</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-6 order-first order-md-2">
+                    <img src="luis-events-low-resolution-logo-color-on-transparent-background.png" class="img-fluid p-2 " width="200">
+                </div>
+            </div>
+            <div class="row cta p-4">
+                <div class="col">
+                    <h4>
+                        Allow the app to finish loading. After it is done , try adding to the table. Check out my portfolio <a
+                            href="https://luis-enter-here-portfolio.netlify.app/" target="_blank">Luis Rodriguez</a>
+                    </h4>
+                  
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="table-responsive">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#addEvent">
+                            Add Data
+                        </button>
+                        <table class="table table-striped" id="eventData">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Event Name</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Attendance</th>
+                                    <th>Event Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventBody">
+                                <!--Data goes here-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="modal" id="addEvent" tabindex="-1" aria-labelledby="Add Event" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add A New Event</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <form id="newEventForm" onsubmit="saveEventData();">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newEventName">Event Name</label>
+                            <input type="text" class="form-control" id="newEventName" placeholder="Event" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventCity">City</label>
+                            <input type="text" class="form-control" id="newEventCity" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventState">State</label>
+                            <select class="form-control" id="newEventState" required>
+                                <option value="">Select a state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventAttendance">Attendance</label>
+                            <input type="number" class="form-control" id="newEventAttendance" placeholder="Attendance"
+                                required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventDate">Event Date</label>
+                            <input type="date" class="form-control" id="newEventDate" placeholder="Date" required>
+                        </div>
+
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- ======= Footer Section ======= -->
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-lg-3 gy-2">
+                <div class="col text-light order-last order-lg-first ">
+                    <div><span class="text-muted">&copy2023</span> Luis Rodriguez | luisnba76@gmail.com</div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
+                    <img src="luis-events-high-resolution-logo-white-on-transparent-background.png" class="mt-2" alt="" height="70">
+                </div>
+                <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
+                    <div class="row mt-2">
+                        <div class="col social"><a href="https://www.linkedin.com/in/luis-rodriguez-a822b0267/"
+                                target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col social"><a href="https://github.com/Lrodriguez310" target="_blank"><i
+                                    class="fab fa-github fa-2x"></i></a></div>
+                       
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <template id="eventData-template">
+        <tr>
+            <td data-id="event"></td>
+            <td data-id="city"></td>
+            <td data-id="state"></td>
+            <td data-id="attendance"></td>
+            <td data-id="eventDate"></td>
+        </tr>
+    </template>
+
+    <template id="cityDD-template">
+        <a class="dropdown-item" onclick="getEvents(this)"></a>
+    </template>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js">
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="js/SuperDog.js"></script>
+    <script>
+        window.onload = (event) => {
+            buildDropDown();
+        };
+    </script>
+</body>
+
+</html>
